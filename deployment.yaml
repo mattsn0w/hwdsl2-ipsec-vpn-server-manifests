@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ipsec-vpn-home
+  namespace: hwdsl2-ipsec-vpn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ipsec-vpn-home
+  template:
+    metadata:
+      labels:
+        app: ipsec-vpn-home
+    spec:
+      hostname: ipsec-vpn-server
+      containers:
+        - image: hwdsl2/ipsec-vpn-server
+          name: ipsec-vpn-server
+          env:
+          - name: VPN_IPSEC_PSK
+            valueFrom:
+              secretKeyRef:
+                name: ipsec-vpn-psk-user-password-secret
+                key: psk
+          - name: VPN_USER
+            valueFrom:
+              secretKeyRef:
+                name: ipsec-vpn-psk-user-password-secret
+                key: username
+          - name: VPN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: ipsec-vpn-psk-user-password-secret
+                key: password
+          - name: VPN_DNS_SRV1
+            value: "172.16.1.53"
+          volumeMounts:
+          - name: hwdsl2-ipsec-vpn-server-longhorn-volume
+            mountPath: /etc/ipsec.d
+          securityContext:
+            privileged: true
+      volumes:
+      - name: hwdsl2-ipsec-vpn-server-longhorn-volume
+        persistentVolumeClaim:
+          claimName: hwdsl2-ipsec-vpn-server-longhorn-pvc
