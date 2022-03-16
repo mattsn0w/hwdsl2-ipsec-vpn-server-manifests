@@ -25,3 +25,27 @@ for YAML in namespace.yaml pvc.yaml secrets.yaml eip.yaml service.yaml deploymen
     kubectl apply -f $YAML
 done
 ```
+
+### Verify things are running
+```
+ubuntu@vm1:~/manifests/hwdsl2-ipsec-vpn-server$ kubectl get all,eips,secrets -n hwdsl2-ipsec-vpn
+NAME                                 READY   STATUS    RESTARTS   AGE
+pod/ipsec-vpn-home-965cdf896-fpd8r   1/1     Running   0          3h24m
+
+NAME                                  TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)                        AGE
+service/ipsec-vpn-home-layer2lb-svc   LoadBalancer   10.43.74.245   172.16.1.90   500:31186/UDP,4500:31080/UDP   18h
+
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/ipsec-vpn-home   1/1     1            1           3h24m
+
+NAME                                       DESIRED   CURRENT   READY   AGE
+replicaset.apps/ipsec-vpn-home-965cdf896   1         1         1       3h24m
+
+NAME                                           CIDR          USAGE   TOTAL
+eip.network.kubesphere.io/ipsec-vpn-home-eip   172.16.1.90   1       1
+
+NAME                                        TYPE                                  DATA   AGE
+secret/default-token-2trq4                  kubernetes.io/service-account-token   3      18h
+secret/ipsec-vpn-psk-user-password-secret   Opaque                                3      3h40m
+ubuntu@vm1:~/manifests/hwdsl2-ipsec-vpn-server$
+```
