@@ -9,8 +9,9 @@
 ## Requirments
 * [A self-hosted k3s cluster](https://github.com/mattsn0w/k3s-home) (_do you even home lab, br0?_)
 * [OpenELB](https://openelb.github.io/docs/getting-started/installation/install-openelb-on-k3s/) installed (_for Layer-2, too lazy for BGP, HA goodness!_)
+* [MetalLB](https://metallb.org/) installed also works
 * [Longhorn](https://longhorn.io/docs/1.2.3/deploy/install/install-with-kubectl/) installed (_for k8s cloud-native storage_)
-* 
+* [Lin Song's ipsec-vpn-server](https://github.com/hwdsl2/docker-ipsec-vpn-server) container image (_Read The Fine Manual_)
 
 ## Tweaks
 * Update `secrets_template.yaml` with the desired PSK, Username, and Password. These details will be needed for client configuration. Rename to secrets.yaml, and preferably store this encrypted at rest.  
