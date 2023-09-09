@@ -3,13 +3,12 @@
 ## Objective
 * An IPSec VPN for iOS/MacOS devices that I can use while out and about.  
 * Run IaC on Kubernetes at home, or work. 
-* Learn and test Longhorn for Kubernetes native storage and OpenELB for on-premise load balancer.
+* Learn and test Longhorn for Kubernetes native storage and MetalLB for on-premise load balancer. Previously used OpenELB, but that limits you to only TCP or only UDP protocols on a given load balancer IP.
 
 
 ## Requirments
 * [A self-hosted k3s cluster](https://github.com/mattsn0w/k3s-home) (_do you even home lab, br0?_)
-* [OpenELB](https://openelb.github.io/docs/getting-started/installation/install-openelb-on-k3s/) installed (_for Layer-2, too lazy for BGP, HA goodness!_)
-* [MetalLB](https://metallb.org/) installed also works
+* [MetalLB](https://metallb.org/) installed and configure for L2 Advertisement.
 * [Longhorn](https://longhorn.io/docs/1.2.3/deploy/install/install-with-kubectl/) installed (_for k8s cloud-native storage_)
 * [Lin Song's ipsec-vpn-server](https://github.com/hwdsl2/docker-ipsec-vpn-server) container image (_Read The Fine Manual_)
 

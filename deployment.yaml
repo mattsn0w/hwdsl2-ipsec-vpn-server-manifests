@@ -34,13 +34,17 @@ spec:
                 name: ipsec-vpn-psk-user-password-secret
                 key: password
           - name: VPN_DNS_SRV1
-            value: "172.16.1.53"
-          volumeMounts:
-          - name: hwdsl2-ipsec-vpn-server-longhorn-volume
-            mountPath: /etc/ipsec.d
+            value: "172.16.1.11"
+          - name: VPN_DNS_SRV2
+            value: "172.16.1.12"
+          - name: VPN_PUBLIC_IP
+            value: "12.34.56.78"
+#          volumeMounts:
+#          - name: hwdsl2-ipsec-vpn-server-longhorn-volume
+#            mountPath: /etc/ipsec.d
           securityContext:
             privileged: true
-      volumes:
-      - name: hwdsl2-ipsec-vpn-server-longhorn-volume
-        persistentVolumeClaim:
-          claimName: hwdsl2-ipsec-vpn-server-longhorn-pvc
+#      volumes:
+#      - name: hwdsl2-ipsec-vpn-server-longhorn-volume
+#        persistentVolumeClaim:
+#          claimName: hwdsl2-ipsec-vpn-server-longhorn-pvc

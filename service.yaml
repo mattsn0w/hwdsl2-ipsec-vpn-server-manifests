@@ -8,7 +8,7 @@ spec:
   selector:
     app: ipsec-vpn-home
   type: LoadBalancer
-  loadBalancerIP: 172.16.1.90
+  loadBalancerIP: 172.16.1.110
   ports:
     - name: isakmp
       port: 500
